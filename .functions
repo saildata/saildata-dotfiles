@@ -169,3 +169,4 @@ function ccd() {
   unset OLDPATH
 }
 
+# vim ft=sh
