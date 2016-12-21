@@ -1,7 +1,11 @@
+#!/usr/bin/bash
+#
 # 1- denotes sourced from https://raw.githubusercontent.com/mathiasbynens/dotfiles/master/.functions (1/31/16)
+# 2- re: 1-  (minor deviations/tweaks may exist)
 
 
 # 1- Simple calculator
+#---------------------
 function calc() {
     local result="";
     result="$(printf "scale=10;$*\n" | bc --mathlib | tr -d '\\\n')";
@@ -21,12 +25,14 @@ function calc() {
 
 
 # 1- Create a new directory and enter it
+#---------------------------------------
 function mkd() {
-    mkdir -p "$@" && cd "$_";
+    mkdir -p "$@" && cd "$_" || exit;
 }
 
 
 # 1- Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
+#--------------------------------------------
 function targz() {
     local tmpFile="${@%/}.tar";
     tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1;
@@ -57,6 +63,7 @@ function targz() {
 
 # 1- Determine size of a file or total size of a directory
 # Modified to avoid errors
+#---------------------------------------------------------
 function fs() {
     if du -b /dev/null > /dev/null 2>&1; then
         local arg=-sbh;
@@ -66,40 +73,36 @@ function fs() {
     if [[ -n "$@" ]]; then
         du $arg -- "$@" 2>/dev/null;
     else
-        du $arg .[^.]* * 2>/dev/null;
+        du $arg -- .[^.]* * 2>/dev/null;
     fi;
 }
 
 # 1- Compare original and gzipped file size
+#--------------------------------------------
 function gz() {
-    local origsize=$(wc -c < "$1");
-    local gzipsize=$(gzip -c "$1" | wc -c);
-    local ratio=$(echo "$gzipsize * 100 / $origsize" | bc -l);
+    local origsize
+    local gzipsize
+    local ratio
+    origsize=$(wc -c < "$1");
+    gzipsize=$(gzip -c "$1" | wc -c);
+    ratio=$(echo "$gzipsize * 100 / $origsize" | bc -l);
+
     printf "orig: %d bytes\n" "$origsize";
     printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio";
 }
 
 
 # 1- Run `dig` and display the most useful info
+#----------------------------------------------
 function digga() {
     dig +nocmd "$1" any +multiline +noall +answer;
 }
 
-
-# 1- Get a character’s Unicode code point
-function codepoint() {
-    perl -e "use utf8; print sprintf('U+%04X', ord(\"$@\"))";
-    # print a newline unless we’re piping the output to another program
-    if [ -t 1 ]; then
-        echo ""; # newline
-    fi;
-}
-
- 
 # 1- `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
 # the `.git` directory, listing directories first. The output gets piped into
 # `less` with options to preserve color and line numbers, unless the output is
 # small enough for one screen.
+#---------------------------------------------------------------------------------
 function tre() {
     tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
@@ -107,21 +110,23 @@ function tre() {
 
 # Extract archives - use: extract <file>
 # Based on http://dotfiles.org/~pseup/.bashrc
+#--------------------------------------------
 function extract() {
     if [ -f "$1" ] ; then
-        local filename=$(basename "$1")
-        local foldername="${filename%%.*}"
-        local fullpath=`perl -e 'use Cwd "abs_path";print abs_path(shift)' "$1"`
-        local didfolderexist=false
+        local filename, foldername, fullpath, didfolderexist
+        filename=$(basename "$1")
+        foldername="${filename%%.*}"
+        fullpath=$(perl -e 'use Cwd "abs_path";print abs_path(shift)' "$1")
+        didfolderexist=false
         if [ -d "$foldername" ]; then
             didfolderexist=true
-            read -p "$foldername already exists, do you want to overwrite it? (y/n) " -n 1
+            read -p -r "$foldername already exists, do you want to overwrite it? (y/n) " -n 1
             echo
             if [[ $REPLY =~ ^[Nn]$ ]]; then
                 return
             fi
         fi
-        mkdir -p "$foldername" && cd "$foldername"
+        mkdir -p "$foldername" && cd "$foldername" || exit
         case $1 in
             *.tar.bz2) tar xjf "$fullpath" ;;
             *.tar.gz) tar xzf "$fullpath" ;;
@@ -144,23 +149,33 @@ function extract() {
 
 
 # find a file with a given string pattern
+#----------------------------------------
 function ff() { find . -readable -type f -iname '*'"$*"'*' -print 2>/dev/null ; }
 
-# which Python is currently active
+
+# Which Python is currently active?
+#----------------------------------
 function wpy() {
   which python | head -n 1
 }
 
+
 # use Anaconda Python environment in the current shell (conda up)
+# Also set gcc to version 5+ for PyCuda and friends, only for this shell.
+# The default reverts back to gcc 6+.
+#------------------------------------------------------------------------
 function ccu() {
   export OLDPATH=${PATH}
-  export PATH=$HOME/anaconda3/bin${PATH:+:${PATH}}
+  export PATH="/opt/cuda/bin:/opt/cuda/include:$HOME/anaconda3/bin${PATH:+:${PATH}}"
+  export LD_LIBRARY_PATH=/opt/cuda/lib64
 }
+
 
 # source py27 environment from Anaconda
 function py27() {
   source activate py27
 }
+
 
 # go back to native Python environment without restarting Bash (conda down)
 function ccd() {
@@ -169,4 +184,16 @@ function ccd() {
   unset OLDPATH
 }
 
-# vim ft=sh
+
+function man() {
+  LESS_TERMCAP_md=$'\e[01;36m' \
+  LESS_TERMCAP_me=$'\e[0m' \
+  LESS_TERMCAP_se=$'\e[0m' \
+  LESS_TERMCAP_so=$'\e[40;48;5;32m' \
+  LESS_TERMCAP_ue=$'\e[01;37m' \
+  LESS_TERMCAP_us=$'\e[01;32m' \
+  command man "$@"
+}
+
+
+# vim: ft=sh
