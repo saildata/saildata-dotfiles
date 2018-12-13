@@ -4,8 +4,6 @@
 # 2- re: 1-  (minor deviations/tweaks may exist)
 
 
-# 1- Simple calculator
-#---------------------
 function calc() {
     local result="";
     result="$(printf "scale=10;$*\n" | bc --mathlib | tr -d '\\\n')";
@@ -22,6 +20,7 @@ function calc() {
     fi;
     printf "\n";
 }
+
 
 
 # 1- Create a new directory and enter it
@@ -104,7 +103,7 @@ function digga() {
 # small enough for one screen.
 #---------------------------------------------------------------------------------
 function tre() {
-    tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
+    tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" --timefmt "%m-%d %H:%M" | less -FRNX;
 }
 
 
@@ -157,31 +156,6 @@ function ff() { find . -readable -type f -iname '*'"$*"'*' -print 2>/dev/null ; 
 #----------------------------------
 function wpy() {
   which python | head -n 1
-}
-
-
-# use Anaconda Python environment in the current shell (conda up)
-# Also set gcc to version 5+ for PyCuda and friends, only for this shell.
-# The default reverts back to gcc 6+.
-#------------------------------------------------------------------------
-function ccu() {
-  export OLDPATH=${PATH}
-  export PATH="/opt/cuda/bin:/opt/cuda/include:$HOME/anaconda3/bin${PATH:+:${PATH}}"
-  export LD_LIBRARY_PATH=/opt/cuda/lib64
-}
-
-
-# source py27 environment from Anaconda
-function py27() {
-  source activate py27
-}
-
-
-# go back to native Python environment without restarting Bash (conda down)
-function ccd() {
-  source deactivate         # deactivate any environments that were sourced
-  export PATH=${OLDPATH}
-  unset OLDPATH
 }
 
 
