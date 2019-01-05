@@ -22,6 +22,7 @@ source "${HOME}"/.config/.bashrc.d/aliases
 source "${HOME}"/.config/.bashrc.d/functions
 source "${HOME}"/.config/.bashrc.d/shell-options
 source "${HOME}"/.config/.bashrc.d/variables
+source "${HOME}"/.config/.bashrc.d/completions/cht.sh
 
 # Source scripts for:
 #--------------------
