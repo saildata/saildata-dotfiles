@@ -23,15 +23,14 @@ function calc() {
 }
 
 
-
-# 1- Create a new directory and enter it
+# Create a new directory and enter it
 #---------------------------------------
 function mkd() {
     mkdir -p "$@" && cd "$_" || exit;
 }
 
 
-# 1- Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
+# Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
 #--------------------------------------------
 function targz() {
     local tmpFile="${@%/}.tar";
@@ -61,7 +60,7 @@ function targz() {
 }
 
 
-# 1- Determine size of a file or total size of a directory
+# Determine size of a file or total size of a directory
 # Modified to avoid errors
 #---------------------------------------------------------
 function fs() {
@@ -77,7 +76,8 @@ function fs() {
     fi;
 }
 
-# 1- Compare original and gzipped file size
+
+# Compare original and gzipped file size
 #--------------------------------------------
 function gz() {
     local origsize
@@ -92,13 +92,14 @@ function gz() {
 }
 
 
-# 1- Run `dig` and display the most useful info
+# Run `dig` and display the most useful info
 #----------------------------------------------
 function digga() {
     dig +nocmd "$1" any +multiline +noall +answer;
 }
 
-# 1- `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
+
+# `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
 # the `.git` directory, listing directories first. The output gets piped into
 # `less` with options to preserve color and line numbers, unless the output is
 # small enough for one screen.
