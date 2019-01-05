@@ -1,0 +1,6 @@
+#
+# bash shell options
+#
+
+shopt -s histappend
+shopt -s globstar

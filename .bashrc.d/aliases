@@ -1,0 +1,53 @@
+#
+# bash aliases
+#
+
+
+# Misc alias
+#-----------
+alias \?!='echo $?'
+alias djd='du -sh'
+alias \?\?='howdoi'
+alias gi='grep -i --color=auto'
+alias je='journalctl --this-boot --no-hostname -e'
+alias dmesg='sudo dmesg -T'
+alias ffplay='ffplay -hide_banner'
+alias ffmpeg='ffmpeg -hide_banner'
+alias ffprobe='ffprobe -hide_banner'
+alias getiostat='iostat -dmxc'
+alias ncdu='ncdu --si'
+alias ee=' history -c && history -w && rm -f ~/.viminfo && rm -f ~/.python_history && exit'
+alias ltt='ls -latr --color=auto /tmp'
+alias wcl='wc -l'
+alias gosth='cd $stmhome'
+alias ddgr="ddgr -n 7 --noua --reg 'en-us' "
+alias mpv-a='mpv --list-options | less'
+alias pa='pulsemixer'
+alias glances='glances -C $XDG_CONFIG_HOME/glances/glances.conf'
+alias pgrep='pgrep -i'
+
+alias clipc='xclip -r -selection clipboard'
+alias clipv='xclip -selection clipboard -o'
+
+alias diskspace="du -S | sort -n -r |more"
+
+jel() { journalctl -b -p "$1"; }
+
+#alias tldr="tldr -t base16"
+
+# Arch Linux / Pacman
+#--------------------
+# remote package detail
+alias psi='pacman -Si'
+# local package detail
+alias pqi='pacman -Qi'
+# list files
+alias pql='pacman -Ql'
+# who owns
+alias pqo='pacman -Qo'
+# changelogs
+alias plog='pacolog -l3'
+# package search - local
+pqq() { pacman -Qq | grep -i --col "$1"; }
+# even more package detail - local
+alias pqqi='pacman -Qii'

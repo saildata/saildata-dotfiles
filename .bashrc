@@ -1,171 +1,105 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+#
+# ~/.bashrc
+#
 
 # If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
+#------------------------------------------------
+[[ $- != *i* ]] && return
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+[[ $DISPLAY ]] && shopt -s checkwinsize
+
+# Set default envs
+#-----------------
+export PATH="${HOME}/bin:${HOME}/.local/bin:${HOME}/.node_modules/bin:/usr/local/bin:/usr/lib:/var/lib/pacman:${PATH}"
+
+
+# Tilix fix for vte.sh
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+    source /etc/profile.d/vte.sh
 fi
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
 
-if hash liquidprompt 2>/dev/null; then
-	source liquidprompt
-fi
+# Load files from ~/.bashrc.d
+source "${HOME}"/.config/.bashrc.d/aliases
+source "${HOME}"/.config/.bashrc.d/variables
+source "${HOME}"/.config/.bashrc.d/
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
+export XDG_DATA_DIRS=/usr/local/share:/usr/share
+export XDG_CONFIG_DIRS=/etc/xdg
 
-# append to the history file, don't overwrite it
-shopt -s histappend
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME="$HOME"/.local/share
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+export HISTCONTROL=ignoreboth
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+export stmhome="$HOME"/.local/share/Steam/steamapps/common
 
-alias '?!'='echo $?'
-alias wcl='wc -l'
-alias ee='exit'
+#npm
+export npm_config_prefix=~/.node_modules
+
+export SYSTEMD_EDITOR=vim
+export SYSTEMD_PAGER=less
+export SYSTEMD_LESS=FRXMKi
+export EDITOR=vim
+export SUDO_EDITOR=vim
+export VISUAL=vim
+export HISTFILESIZE=1000
+export LESS='-m -i -R -X -P%t?f%f :stdin .?pb%pb\%:?lbLine %lb:?bbByte %bb:-...'
+export LESSHISTFILE='/dev/null'
+export LESSQUIET=1
+#export LESSCOLORIZER='pygmentize'
+export S_COLORS=always
+
+# MISC/OTHER
+#-----------
+alias ..='cd ..'
+alias ...='cd ../..'
+
 alias rm='rm -i'
 alias cp='cp -i'
-alias djd='du -sh 2>/dev/null'
-alias ..='cd ..'
-alias jel='journalctl -b0 -p $1'
-alias je='journalctl -e'
-alias ltt='ls -latr /tmp'
-
-# pacman alias
-alias pql='pacman -Ql'
-alias pss='pacman -Ss'
-alias pqo='pacman -Qo'
-alias psi='pacman -Si'
-alias pqq='pacman -Qq | grep -i $1'
-alias pqi='pacman -Qi'
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-shopt -s globstar
-
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias gi='grep --color=auto -i'
-    alias fgrep='fgrep -F --color=auto'
-    alias egrep='grep -E --color=auto'
-    alias c='clear'
-
-fi
-
-# colored GCC warnings and errors
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-export SUDO_EDITOR=/usr/bin/vim
-
-# some more ls aliases
-alias ll='ls -laF'
-alias la='ls -A'
-alias l='ls -laF'
-alias lt='ls -latr'
-alias lss='find . -readable -maxdepth 1 -exec du -sh {} \; 2>/dev/null | sort --human-numeric-sort | tail'
-alias python='python3'
+alias mv='mv -i'
+alias c='clear'
 alias e='exit'
 
-source $HOME/.functions
+alias ..='cd ..'
+alias c='clear'
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
 
-# pip bash completion start
-_pip_completion()
-{
-    COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}" \
-                   COMP_CWORD=$COMP_CWORD \
-                   PIP_AUTO_COMPLETE=1 $1 ) )
-}
+# LS & Friends
+#--------------
+alias l='ls -lAhF --color=auto'
+alias lx='ls -lXhBF --color=auto'         #  lx   -> Sort by EXTENSION.
 
-complete -o default -F _pip_completion pip
+#alias lss='ls -lShrF --color=auto'       #  lss   -> Sort by SIZE, biggest last.
+alias lss='find . -readable -maxdepth 1 -exec du -sh {} \; 2>/dev/null| sort -h'
 
-# npm stuff
+alias lt='ls -lAtrhF --color=auto'        #  lt   -> Sort by MODIFIED TIME, most recent last (bottom of stack).
+alias ltr='ls -lAthF --color=auto'        #  ltr   -> Sort by MODIFIED TIME, most recent shown first (top of stack).
 
-NPM_PACKAGES="${HOME}/.npm-packages"
+alias poweroff='systemctl poweroff'
+alias lsd="ls -lF --color | grep /$"      #  lsd   -> list directories
 
-PATH="$NPM_PACKAGES/bin:$PATH"
+# Source scripts for:
+#--------------------
+source ~/.functions
 
-# Unset manpath so we can inherit from /etc/manpath via the `manpath` command
-unset MANPATH # delete if you already modified MANPATH elsewhere in your config
-export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
-###-begin-npm-completion-###
-#
-# npm command completion script
-#
-# Installation: npm completion >> ~/.bashrc  (or ~/.zshrc)
-# Or, maybe: npm completion > /usr/local/etc/bash_completion.d/npm
-#
+source ~/.bash_profile
 
-if type complete &>/dev/null; then
-  _npm_completion () {
-    local words cword
-    if type _get_comp_words_by_ref &>/dev/null; then
-      _get_comp_words_by_ref -n = -n @ -w words -i cword
-    else
-      cword="$COMP_CWORD"
-      words=("${COMP_WORDS[@]}")
-    fi
+source /usr/share/bash-completion/bash_completion
 
-    local si="$IFS"
-    IFS=$'\n' COMPREPLY=($(COMP_CWORD="$cword" \
-                           COMP_LINE="$COMP_LINE" \
-                           COMP_POINT="$COMP_POINT" \
-                           npm completion -- "${words[@]}" \
-                           2>/dev/null)) || return $?
-    IFS="$si"
-  }
-  complete -o default -F _npm_completion npm
-elif type compdef &>/dev/null; then
-  _npm_completion() {
-    local si=$IFS
-    compadd -- $(COMP_CWORD=$((CURRENT-1)) \
-                 COMP_LINE=$BUFFER \
-                 COMP_POINT=0 \
-                 npm completion -- "${words[@]}" \
-                 2>/dev/null)
-    IFS=$si
-  }
-  compdef _npm_completion npm
-elif type compctl &>/dev/null; then
-  _npm_completion () {
-    local cword line point words si
-    read -Ac words
-    read -cn cword
-    let cword-=1
-    read -l line
-    read -ln point
-    si="$IFS"
-    IFS=$'\n' reply=($(COMP_CWORD="$cword" \
-                       COMP_LINE="$line" \
-                       COMP_POINT="$point" \
-                       npm completion -- "${words[@]}" \
-                       2>/dev/null)) || return $?
-    IFS="$si"
-  }
-  compctl -K _npm_completion npm
-fi
-###-end-npm-completion-###
+source /usr/bin/liquidprompt
 
+#source /usr/lib/node_modules/tldr/bin/autocompletion.bash
+
+
+# LS Colors
+eval $(dircolors -b /usr/share/LS_COLORS/LS_COLORS)
+
+# BAT env
+export BAT_THEME="Monokai Extended"
+export BAT_STYLE="full"
+
+# vim: ft=sh
