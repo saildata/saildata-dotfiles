@@ -24,8 +24,6 @@ source "${HOME}"/.config/.bashrc.d/
 
 # Source scripts for:
 #--------------------
-source ~/.functions
-
 source ~/.bash_profile
 
 source /usr/share/bash-completion/bash_completion
@@ -34,9 +32,5 @@ source /usr/bin/liquidprompt
 
 # LS Colors
 eval $(dircolors -b /usr/share/LS_COLORS/LS_COLORS)
-
-# BAT env
-export BAT_THEME="Monokai Extended"
-export BAT_STYLE="full"
 
 # vim: ft=sh

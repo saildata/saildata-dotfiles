@@ -28,5 +28,8 @@ export HISTFILESIZE=1000
 export LESS='-m -i -R -X -P%t?f%f :stdin .?pb%pb\%:?lbLine %lb:?bbByte %bb:-...'
 export LESSHISTFILE='/dev/null'
 export LESSQUIET=1
-#export LESSCOLORIZER='pygmentize'
 export S_COLORS=always
+
+# BAT env
+export BAT_THEME="Monokai Extended"
+export BAT_STYLE="full"
