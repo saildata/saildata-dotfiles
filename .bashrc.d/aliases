@@ -3,11 +3,7 @@
 #
 
 
-# Misc alias
-#-----------
-alias \?!='echo $?'
 alias djd='du -sh'
-alias \?\?='howdoi'
 alias gi='grep -i --color=auto'
 alias je='journalctl --this-boot --no-hostname -e'
 alias dmesg='sudo dmesg -T'
@@ -31,9 +27,9 @@ alias clipv='xclip -selection clipboard -o'
 
 alias diskspace="du -S | sort -n -r |more"
 
+# changed to a function...
 jel() { journalctl -b -p "$1"; }
 
-#alias tldr="tldr -t base16"
 
 # Arch Linux / Pacman
 #--------------------
@@ -51,3 +47,36 @@ alias plog='pacolog -l3'
 pqq() { pacman -Qq | grep -i --col "$1"; }
 # even more package detail - local
 alias pqqi='pacman -Qii'
+
+
+# MISC/OTHER
+#-----------
+alias ..='cd ..'
+alias ...='cd ../..'
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias c='clear'
+alias e='exit'
+
+alias ..='cd ..'
+alias c='clear'
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
+
+
+# LS & Friends
+#--------------
+alias l='ls -lAhF --color=auto'
+alias lx='ls -lXhBF --color=auto'         #  lx   -> Sort by EXTENSION.
+
+#alias lss='ls -lShrF --color=auto'       #  lss   -> Sort by SIZE, biggest last.
+alias lss='find . -readable -maxdepth 1 -exec du -sh {} \; 2>/dev/null| sort -h'
+
+alias lt='ls -lAtrhF --color=auto'        #  lt   -> Sort by MODIFIED TIME, most recent last (bottom of stack).
+alias ltr='ls -lAthF --color=auto'        #  ltr   -> Sort by MODIFIED TIME, most recent shown first (top of stack).
+
+alias poweroff='systemctl poweroff'
+alias lsd="ls -lF --color | grep /$"      #  lsd   -> list directories

@@ -51,36 +51,6 @@ export LESSQUIET=1
 #export LESSCOLORIZER='pygmentize'
 export S_COLORS=always
 
-# MISC/OTHER
-#-----------
-alias ..='cd ..'
-alias ...='cd ../..'
-
-alias rm='rm -i'
-alias cp='cp -i'
-alias mv='mv -i'
-alias c='clear'
-alias e='exit'
-
-alias ..='cd ..'
-alias c='clear'
-alias cp='cp -i'
-alias mv='mv -i'
-alias rm='rm -i'
-
-# LS & Friends
-#--------------
-alias l='ls -lAhF --color=auto'
-alias lx='ls -lXhBF --color=auto'         #  lx   -> Sort by EXTENSION.
-
-#alias lss='ls -lShrF --color=auto'       #  lss   -> Sort by SIZE, biggest last.
-alias lss='find . -readable -maxdepth 1 -exec du -sh {} \; 2>/dev/null| sort -h'
-
-alias lt='ls -lAtrhF --color=auto'        #  lt   -> Sort by MODIFIED TIME, most recent last (bottom of stack).
-alias ltr='ls -lAthF --color=auto'        #  ltr   -> Sort by MODIFIED TIME, most recent shown first (top of stack).
-
-alias poweroff='systemctl poweroff'
-alias lsd="ls -lF --color | grep /$"      #  lsd   -> list directories
 
 # Source scripts for:
 #--------------------
