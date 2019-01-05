@@ -80,3 +80,5 @@ alias ltr='ls -lAthF --color=auto'        #  ltr   -> Sort by MODIFIED TIME, mos
 
 alias poweroff='systemctl poweroff'
 alias lsd="ls -lF --color | grep /$"      #  lsd   -> list directories
+
+alias dir='dir --color'
