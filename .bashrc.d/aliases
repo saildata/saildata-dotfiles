@@ -82,3 +82,5 @@ alias poweroff='systemctl poweroff'
 alias lsd="ls -lF --color | grep /$"      #  lsd   -> list directories
 
 alias dir='dir --color'
+
+# vim: ft=sh

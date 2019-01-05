@@ -33,3 +33,5 @@ export S_COLORS=always
 # BAT env
 export BAT_THEME="Monokai Extended"
 export BAT_STYLE="full"
+
+# vim: ft=sh

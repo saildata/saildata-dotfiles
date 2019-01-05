@@ -4,3 +4,5 @@
 
 shopt -s histappend
 shopt -s globstar
+
+# vim: ft=sh
