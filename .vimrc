@@ -40,11 +40,8 @@ let g:lightline = {
       \ 'colorscheme': 'deus',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
-      \ },
+      \             [ 'readonly', 'filename', 'modified' ] ]
+      \ }
       \ }
 
 " Remove all trailing whitespace by pressing F5
