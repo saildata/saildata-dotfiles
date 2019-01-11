@@ -5,10 +5,6 @@ Modifications for `Stylus <https://github.com/openstyles/stylus/>`_.
 *Changes made to Stylus that can be imported through the Stylus
 manage interface*
 
-----
-
-----
-
 +----------------------------------------------------------+------------------------------------------------+
 | ::                                                       |                                                |
 |                                                          |                                                |
