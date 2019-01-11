@@ -33,7 +33,7 @@
 		"name": "github.com local changes",
 		"sections": [
 			{
-				"code": "/* This ↴ really grinds my gears */\n.signup-prompt-bg {\n    display: none;\n}\n/* GH Wide is .. too wide by default */\n.container, .container-lg {\n  width: 100% !important;\n  padding-left: 7% !important;\n  padding-right: 7% !important;\n}\n\n/* Font size for code */\n.blob-code-inner {\n    font-size: 13px !important;\n}",
+				"code": "/* This ↴ really grinds my gears */\n.signup-prompt-bg {\n    display: none;\n}\n/* GH Wide is .. too wide by default */\n.container, .container-lg {\n  width: 100% !important;\n  padding-left: 7% !important;\n  padding-right: 7% !important;\n}\n\n/* Font size for code */\n.blob-code-inner {\n    font-size: 13px !important;\n}\n\n/* Make issue comments easier to read */\n.comment-body {\n\tfont-size: 1.1em;\n    line-height: 1.6em;\n}",
 				"urlPrefixes": [
 					"https://github.com/"
 				]
@@ -503,7 +503,7 @@
 		"name": "aur.archlinux.org",
 		"sections": [
 			{
-				"code": "/* Make [the] AUR great again */\ntable.results {\n\tfont-size: 1em;\n}\n\n#pkgdetails #detailslinks ul {\n\tfont-size: 1em;\n}\n\n#content {\n\tfont-size: 0.9em;\n}",
+				"code": "/* Make [the] AUR great again */\ntable.results {\n\tfont-size: 0.95em;\n}\n\n#pkgdetails #detailslinks ul {\n\tfont-size: 0.95em;\n}\n\n#content {\n\tfont-size: 0.9em;\n}",
 				"urlPrefixes": [
 					"https://aur.archlinux.org/"
 				]
