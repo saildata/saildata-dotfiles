@@ -10,7 +10,7 @@
 
 # Set default envs
 #-----------------
-export PATH="${HOME}/bin:${HOME}/.local/bin:${HOME}/.node_modules/bin:/usr/local/bin:/usr/lib:/var/lib/pacman:${PATH}"
+export PATH="${HOME}/bin:${HOME}/.local/bin:${HOME}/.node_modules/bin:/usr/lib:/var/lib/pacman:${PATH}"
 
 # Tilix fix for vte.sh
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
