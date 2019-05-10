@@ -1,7 +1,6 @@
 #
 # bash variables
-#
-
+# 
 
 export XDG_DATA_DIRS=/usr/local/share:/usr/share
 export XDG_CONFIG_DIRS=/etc/xdg
@@ -31,7 +30,8 @@ export LESSQUIET=1
 export S_COLORS=always
 
 # BAT env
-export BAT_THEME="Monokai Extended"
-export BAT_STYLE="full"
+export BAT_CONFIG_PATH="${XDG_CONFIG_HOME}/bat/bat.conf"
+#export BAT_THEME="Monokai Extended"
+#export BAT_STYLE="full"
 
 # vim: ft=sh
