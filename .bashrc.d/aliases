@@ -32,13 +32,11 @@ alias ip="ip --color=auto"
 # changed to a function...
 jel() { journalctl -b -p "$1"; }
 
-# date using am/pm locale format
-alias datee='date +"%c"'
-
-# Arch Linux / Pacman
-#--------------------
+# Arch Linux / Pacman / yay
+#--------------------------
 # remote package detail
 alias psi='pacman -Si'
+alias ysi='yay -Si'
 # local package detail
 alias pqi='pacman -Qi'
 # list files
@@ -61,11 +59,11 @@ alias ...='cd ../..'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-alias c='clear'
+# don't clear the scrollback buffer
+alias c='clear -x'
 alias e='exit'
 
 alias ..='cd ..'
-alias c='clear'
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
@@ -74,20 +72,33 @@ alias rm='rm -i'
 # LS & Friends
 #--------------
 #alias l='ls -lAhF --color=auto'
-alias l='lsd -lhF'
+alias l='lsd -lhF --all'
 alias lx='ls -lXhBF --color=auto'         #  lx   -> Sort by EXTENSION.
 
 #alias lss='ls -lShrF --color=auto'       #  lss   -> Sort by SIZE, biggest last.
 alias lss='find . -readable -maxdepth 1 -exec du -sh {} \; 2>/dev/null| sort -h'
 
 #alias lt='ls -lAtrhF --color=auto'        #  lt   -> Sort by MODIFIED TIME, most recent last (bottom of stack).
-alias lt='lsd -ltrhF'        #  lt   -> Sort by MODIFIED TIME, most recent last (bottom of stack).
+alias lt='lsd -ltrhF --all'        #  lt   -> Sort by MODIFIED TIME, most recent last (bottom of stack).
 alias ltr='ls -lAthF --color=auto'        #  ltr   -> Sort by MODIFIED TIME, most recent shown first (top of stack).
 
 alias poweroff='systemctl poweroff'
 #alias lsd="ls -lF --color | grep /$"      #  lsd   -> list directories
 
 alias dir='dir --color'
+
+# YT related
+youtube-dl-audio () {
+    #https://www.youtube.com/watch?v=l41BJaS_U3I&list=RDWV2fuDZCWM8&index=16
+    youtube-dl -i -f bestaudio -x --audio-quality 0 -o '~/Music/youtube/%(title)s.%(ext)s' "$1"
+}
+
+youtube-dl-audio-pl () {
+   youtube-dl -i -f bestaudio -x --audio-quality 0 -o '~/Music/youtube/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' "$1"
+}
+
+
+
 
 
 

@@ -8,9 +8,13 @@
 
 [[ $DISPLAY ]] && shopt -s checkwinsize
 
+# remove default quit: ctrl+\
+stty quit undef
+
+
 # Set default envs
 #-----------------
-export PATH="${HOME}/bin:${HOME}/.local/bin:${HOME}/.node_modules/bin:/usr/lib:/var/lib/pacman:${PATH}"
+export PATH="${HOME}/bin:${HOME}/.local/bin:${HOME}/.node_modules/:${HOME}/projects/git-extra-commands/bin:bin:/usr/lib:/var/lib/pacman:${PATH}"
 
 # Tilix fix for vte.sh
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then

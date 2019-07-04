@@ -151,7 +151,7 @@ function extract() {
 
 # find a file with a given string pattern
 #----------------------------------------
-function ff() { find . -readable -type f -iname '*'"$*"'*' -print 2>/dev/null ; }
+function ff() { find . -readable -iname '*'"$*"'*' -print 2>/dev/null ; }
 
 
 # Which Python is currently active?
@@ -185,6 +185,5 @@ ps-filter-stat() {
 
     ps -aux | awk {'if ($8 ==  "'"$1"'") print $8" "$11'}
 }
-
 
 # vim: ft=sh
