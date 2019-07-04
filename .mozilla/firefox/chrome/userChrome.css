@@ -1,0 +1,12 @@
+/**
+ * Whiteflash fix 
+ * Makes sure that page background always stays dark
+ */
+
+#tabbrowser-tabpanels,
+#content, 
+browser[type=content-primary],
+browser[type=content] > html { 
+  background: #000 !important;
+}
+
