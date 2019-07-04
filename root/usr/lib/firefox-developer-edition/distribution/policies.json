@@ -1,0 +1,14 @@
+{
+  "policies": {
+    "DisablePocket": true,
+    "DontCheckDefaultBrowser": true,
+    "FlashPlugin": {
+      "Default": false,
+      "Locked": true
+    },
+  "Extensions": {
+      "Uninstall": ["amazondotcom@search.mozilla.org", "google@search.mozilla.org", "bing@search.mozilla.org", "ebay@search.mozilla.org", "twitter@search.mozilla.org", "wikipedia@search.mozilla.org"]
+  }
+  }
+}
+
