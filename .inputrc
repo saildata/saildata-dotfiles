@@ -1,9 +1,19 @@
+$include /etc/inputrc
+
 set completion-ignore-case on
 set mark-symlinked-directories on
 set match-hidden-files on
 
 set show-all-if-unmodified on
 set show-all-if-ambiguous on
-#set completion-map-case on
 
 set completion-query-items 9999
+
+# up arrow completion based on current input
+#"\e[A": history-search-backward
+#"\e[B": history-search-forward
+
+# modify a command in place
+# e.g. wraps the previous command in $() and moves to BOL to edit
+# https://brettterpstra.com/2015/07/09/shell-tricks-inputrc-binding-fun/
+"\e\C-m": '\C-a "$(\C-e)"\C-a'
