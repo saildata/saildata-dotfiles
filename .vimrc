@@ -33,6 +33,7 @@ set lazyredraw          " perf improvement?
 syntax on
 colorscheme ThemerVim
 
+
 "
 " Visual mode stuff
 "
@@ -94,3 +95,18 @@ function! VisualSelection(direction, extra_filter) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
+
+"
+" FileType
+"
+
+autocmd FileType css setlocal shiftwidth=2 tabstop=2
+
+
+" https://stackoverflow.com/questions/37275567/how-do-i-configure-vim-to-not-indent-the-current-line-upon-hitting-return
+"
+augroup overrideftplugins
+    au!
+    au FileType * set cinkeys= indentkeys=
+augroup END
+
