@@ -9,5 +9,5 @@ manage interface*
 | ::                                                       |                                                |
 |                                                          |                                                |
 |    Get the list of styles included                       |                                                |
-|     with the json backup file                            | ``jq .[].name stylus-2019-01-11.json``         |
+|     with the json backup file                            | ``jq .[].name stylus-*.json``                  |
 +----------------------------------------------------------+------------------------------------------------+
