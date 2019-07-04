@@ -1,12 +1,12 @@
 /**
- * Whiteflash fix 
+ * Whiteflash fix
  * Makes sure that page background always stays dark
+ * Thank you: https://github.com/TinyRaindrop/Firefox-UI-customization/blob/588552a6f20b7b294392dcb3befee1f6785f25b7/General/dark_background_on_loading_pages.css
  */
 
 #tabbrowser-tabpanels,
-#content, 
+#content,
 browser[type=content-primary],
-browser[type=content] > html { 
+browser[type=content] > html {
   background: #000 !important;
 }
-
