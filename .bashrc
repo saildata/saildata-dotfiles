@@ -14,7 +14,7 @@ stty quit undef
 
 # Set default envs
 #-----------------
-export PATH="${HOME}/bin:${HOME}/.local/bin:${HOME}/.node_modules/:${HOME}/projects/git-extra-commands/bin:bin:/usr/lib:/var/lib/pacman:${PATH}"
+export PATH="${HOME}/bin:${HOME}/.local/bin:${HOME}/.node_modules/bin:${HOME}/projects/git-extra-commands/bin:/usr/lib:/var/lib/pacman:${PATH}"
 
 # Tilix fix for vte.sh
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
@@ -22,11 +22,11 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
 fi
 
 # Load files from ~/.bashrc.d
-source "${HOME}"/.config/.bashrc.d/aliases
-source "${HOME}"/.config/.bashrc.d/functions
-source "${HOME}"/.config/.bashrc.d/shell-options
-source "${HOME}"/.config/.bashrc.d/variables
-source "${HOME}"/.config/.bashrc.d/completions/cht.sh
+source "${HOME}"/.config/bashrc.d/aliases
+source "${HOME}"/.config/bashrc.d/functions
+source "${HOME}"/.config/bashrc.d/shell-options
+source "${HOME}"/.config/bashrc.d/variables
+source "${HOME}"/.config/bashrc.d/completions/cht.sh
 
 # Source scripts for:
 #--------------------
@@ -39,4 +39,4 @@ source /usr/bin/liquidprompt
 # LS Colors
 eval $(dircolors -b /usr/share/LS_COLORS/LS_COLORS)
 
-# vim: ft=sh
+#export LS_COLORS="$(vivid generate ayu)"
