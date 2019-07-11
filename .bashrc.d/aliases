@@ -45,9 +45,9 @@ alias pql='pacman -Ql'
 alias pqo='pacman -Qo'
 # changelogs
 alias plog='pacolog -l3'
-# package search - local
+# search installed packages
 pqq() { pacman -Qq | grep -i --col "$1"; }
-# even more package detail - local
+# show requires info for installed package
 alias pqqi='pacman -Qii'
 
 
