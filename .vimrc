@@ -15,6 +15,8 @@ Plugin 'fugitive.vim'
 call vundle#end()
 filetype plugin indent on " for vundle
 
+set noswapfile          " turn off disk cache for vim
+
 set showcmd             " show when I press <leader>
 set ignorecase          " aint nobody got time for shift key
 
@@ -39,6 +41,8 @@ set lazyredraw          " Limit screen redraws
 syntax on
 colorscheme ThemerVim
 
+" possible fix for slow vimdiff
+let g:diff_translations = 0
 
 "
 " Visual mode stuff
