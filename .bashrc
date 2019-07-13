@@ -30,7 +30,6 @@ source "${HOME}"/.config/bashrc.d/completions/cht.sh
 
 # Source scripts for:
 #--------------------
-source ~/.bash_profile
 
 source /usr/share/bash-completion/bash_completion
 
