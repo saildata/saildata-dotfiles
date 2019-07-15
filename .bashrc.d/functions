@@ -4,25 +4,6 @@
 # Inspired by many, including:
 # https://raw.githubusercontent.com/mathiasbynens/dotfiles/master/.functions (1/31/16)
 
-
-#function calc() {
-#    local result="";
-#    result="$(printf "scale=10;$*\n" | bc --mathlib | tr -d '\\\n')";
-#    #                       └─ default (when `--mathlib` is used) is 20
-#    #
-#    if [[ "$result" == *.* ]]; then
-#        # improve the output for decimal numbers
-#        printf "$result" |
-#        sed -e 's/^\./0./'        `# add "0" for cases like ".5"` \
-#            -e 's/^-\./-0./'      `# add "0" for cases like "-.5"`\
-#            -e 's/0*$//;s/\.$//';  # remove trailing zeros
-#    else
-#        printf "$result";
-#    fi;
-#    printf "\n";
-#}
-
-
 # Create a new directory and enter it
 #---------------------------------------
 function mkd() {
@@ -59,45 +40,11 @@ function targz() {
     echo "${tmpFile}.gz created successfully.";
 }
 
-
-# Determine size of a file or total size of a directory
-# Modified to avoid errors
-#---------------------------------------------------------
-function fs() {
-    if du -b /dev/null > /dev/null 2>&1; then
-        local arg=-sbh;
-    else
-        local arg=-sh;
-    fi
-    if [[ -n "$@" ]]; then
-        du $arg -- "$@" 2>/dev/null;
-    else
-        du $arg -- .[^.]* * 2>/dev/null;
-    fi;
-}
-
-
-# Compare original and gzipped file size
-#--------------------------------------------
-function gz() {
-    local origsize
-    local gzipsize
-    local ratio
-    origsize=$(wc -c < "$1");
-    gzipsize=$(gzip -c "$1" | wc -c);
-    ratio=$(echo "$gzipsize * 100 / $origsize" | bc -l);
-
-    printf "orig: %d bytes\n" "$origsize";
-    printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio";
-}
-
-
 # Run `dig` and display the most useful info
 #----------------------------------------------
 function digga() {
     dig +nocmd "$1" any +multiline +noall +answer;
 }
-
 
 # `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
 # the `.git` directory, listing directories first. The output gets piped into
@@ -153,14 +100,6 @@ function extract() {
 #----------------------------------------
 function ff() { find . -readable -iname '*'"$*"'*' -print 2>/dev/null ; }
 
-
-# Which Python is currently active?
-#----------------------------------
-function wpy() {
-  which python | head -n 1
-}
-
-
 function man() {
   LESS_TERMCAP_md=$'\e[01;36m' \
   LESS_TERMCAP_me=$'\e[0m' \
@@ -185,7 +124,6 @@ ps-filter-stat() {
 
     ps -aux | awk {'if ($8 ==  "'"$1"'") print $8" "$11'}
 }
-
 
 # https://stackoverflow.com/questions/953481/find-and-restore-a-deleted-file-in-a-git-repository
 git-show-deleted() {
