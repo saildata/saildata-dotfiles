@@ -109,6 +109,10 @@ endfunction
 "
 " vimwiki
 "
+
+" wrapping url links 
+let g:vimwiki_url_maxsave = 10
+
 function! VimwikiLinkHandler(link)
     " Use Vim to open external files with the 'vfile:' scheme.  E.g.:
     "   1) [[vfile:~/Code/PythonProject/abc123.py]]
