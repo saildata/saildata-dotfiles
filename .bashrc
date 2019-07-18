@@ -11,11 +11,11 @@ esac
 export PATH="${HOME}/bin:${HOME}/.local/bin:${HOME}/.node_modules/bin:${HOME}/projects/git-extra-commands/bin:/usr/lib:/var/lib/pacman:${PATH}"
 
 # Load files from ~/.bashrc.d
-source "${HOME}"/.config/bashrc.d/aliases
-source "${HOME}"/.config/bashrc.d/functions
-source "${HOME}"/.config/bashrc.d/shell-options
-source "${HOME}"/.config/bashrc.d/variables
-source "${HOME}"/.config/bashrc.d/completions/cht.sh
+source "$HOME"/.config/bashrc.d/aliases
+source "$HOME"/.config/bashrc.d/functions
+source "$HOME"/.config/bashrc.d/shell-options
+source "$HOME"/.config/bashrc.d/variables
+source "$HOME"/.config/bashrc.d/completions/cht.sh
 
 # Source scripts for:
 #--------------------
@@ -32,7 +32,8 @@ export BASH_IT="/home/srw/.bash_it"
 # Lock and Load a custom theme file.
 # Leave empty to disable theming.
 # location /.bash_it/themes/
-export BASH_IT_THEME='zork'
+export BASH_IT_THEME="$HOME/projects/saildata-dotfiles/.bash_it/themes/zork.theme.bash"
+#export BASH_IT_THEME="demula"
 
 # Don't check mail when opening terminal.
 unset MAILCHECK
