@@ -1,0 +1,105 @@
+@import url("/usr/share/gnome-shell/theme/Flat-Remix-Dark-fullPanel");
+
+stage {
+  font-family: "Cantarell", Sans-Serif;
+  font-size: 10pt;
+  color: #FFF; }
+
+#panel {
+  font-feature-settings: "tnum";
+  border-radius: 0;
+  font-weight: normal;
+  font-size: .9em;
+  height: 2em;
+  color: #FFF;
+  background: rgba(0, 0, 0, 0.8);
+  background-gradient-direction: none; }
+  #panel.unlock-screen, #panel.login-screen, #panel.lock-screen {
+    background-color: transparent; }
+  #panel #panelLeft, #panel #panelCenter {
+    spacing: 0; }
+  #panel .panel-corner {
+    -panel-corner-radius: 0;
+    -panel-corner-background-color: transparent;
+    -panel-corner-border-color: transparent; }
+  #panel .panel-button {
+    -natural-hpadding: 12px;
+    -minimum-hpadding: 6px;
+    font-weight: normal;
+    color: #FFF;
+/*    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.9);*/
+    text-shadow: none;
+    transition-duration: 100ms; }
+    #panel .panel-button .app-menu-icon {
+      -st-icon-style: symbolic;
+      margin-left: 4px;
+      margin-right: 4px; }
+    #panel .panel-button .system-status-icon,
+    #panel .panel-button .app-menu-icon > StIcon {
+/*      icon-shadow: 0px 1px 2px rgba(0, 0, 0, 0.9);*/
+      icon-shadow: none;
+}
+    #panel .panel-button .popup-menu-arrow {
+      width: 0; }
+    #panel .panel-button:active, #panel .panel-button:overview, #panel .panel-button:focus, #panel .panel-button:checked {
+      background-color: rgba(0, 0, 0, 0.01);
+      box-shadow: inset 0 -0.2em 0 #FFF;
+      text-shadow: none;
+/*      text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5); */ 
+}
+      #panel .panel-button:active > .system-status-icon, #panel .panel-button:overview > .system-status-icon, #panel .panel-button:focus > .system-status-icon, #panel .panel-button:checked > .system-status-icon {
+        icon-shadow: none;
+/*        icon-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);*/
+ }
+    #panel .panel-button .system-status-icon {
+      icon-size: 1.09em;
+      padding: 0 5px; }
+    .unlock-screen #panel .panel-button, .login-screen #panel .panel-button, .lock-screen #panel .panel-button {
+      color: white; }
+      .unlock-screen #panel .panel-button:focus, .unlock-screen #panel .panel-button:hover, .unlock-screen #panel .panel-button:active, .login-screen #panel .panel-button:focus, .login-screen #panel .panel-button:hover, .login-screen #panel .panel-button:active, .lock-screen #panel .panel-button:focus, .lock-screen #panel .panel-button:hover, .lock-screen #panel .panel-button:active {
+        color: white; }
+  #panel .panel-status-indicators-box,
+  #panel .panel-status-menu-box {
+    spacing: 2px; }
+  #panel .power-status.panel-status-indicators-box {
+    spacing: 0; }
+  #panel .screencast-indicator {
+    color: #FD7D00; }
+  #panel #panelActivities.panel-button StLabel {
+    border: 0;
+    background-image: url("assets/view-grid-symbolic.svg");
+    background-size: 1.1em;
+    margin: 0 .3em;
+    width: 1em;
+    color: transparent; }
+  #panel .remote-access-indicator {
+    color: #FD7D00; }
+
+.search-entry {
+  color: white;
+  caret-color: transparent;
+  text-shadow: none;
+  background-color: rgba(45, 45, 45, 0.2);
+  font-weight: normal;
+  transition-duration: none;
+  font-size: 1.05em; }
+.search-entry:focus, .search-entry:hover {
+  font-weight: normal;
+  background-color: rgba(45, 45, 45, 0.2);
+  color: white !important;
+  box-shadow: none;
+  text-shadow: none; }
+
+.search-entry:focus .search-entry-icon, .search-entry:hover .search-entry-icon {
+  color: white;
+  icon-size: 1em;
+  icon-shadow: none; }
+
+.search-entry .search-entry-icon {
+  padding: 0 .36em;
+  color: white;
+  transition-duration: none;
+  icon-shadow: none; }
+
+#searchResultsContent {
+  font-weight: normal; }
