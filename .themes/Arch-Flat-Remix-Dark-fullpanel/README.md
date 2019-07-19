@@ -4,7 +4,7 @@
 
  - **most areas**
 
-  - `font-weight` ➞ `normal` (*default `bold` in many areas*)
+   - `font-weight` ➞ `normal` (*default `bold` in many areas*)
 
 
  - **panel, search-entry**
