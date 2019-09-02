@@ -1,0 +1,28 @@
+.Colour {
+background-image:
+  /* top, transparent black, faked with gradient */ 
+  linear-gradient(
+  rgba(0, 0, 0, 0.8), 
+  rgba(0, 0, 0, 0.5),
+  rgba(0, 0, 0, 0.3),
+  rgba(0, 0, 0, 0.2),
+  rgba(0, 0, 0, 0.1)
+  ),
+  /* bottom, image */
+  linear-gradient(0deg, #447778, #447778); }
+
+/* clock */
+.Analogue * {
+  stroke: rgba(255,255,255,0.7) !important;
+}
+
+/* clock center */
+.cap {
+  fill: rgba(255,255,255,0.7) !important;
+}
+
+.Weather.corner {
+  color: white;
+  margin-right: 32vw !important;
+  margin-top: 28vh !important; }
+
