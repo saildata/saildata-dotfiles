@@ -65,3 +65,6 @@ export SHORT_TERM_LINE=true
 
 # Load Bash It
 source "$BASH_IT"/bash_it.sh
+
+(cat ~/.cache/wal/sequences &)
+
