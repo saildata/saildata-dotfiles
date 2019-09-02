@@ -140,5 +140,5 @@ endfunction
 
 autocmd FileType css setlocal shiftwidth=2 tabstop=2
 " leader+c comment in py and sh files
-autocmd FileType python,sh nnoremap <buffer> <localleader>c I#<esc>
+autocmd FileType python,sh,conf nnoremap <buffer> <localleader>c I#<esc>
 
