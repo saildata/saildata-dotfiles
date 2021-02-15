@@ -121,8 +121,8 @@ ps-filter-stat() {
    # W    paging (not valid since the 2.6.xx kernel)
    # X    dead (should never be seen)
    # Z    defunct ("zombie") process, terminated but not reaped by its parent
-
-    ps -aux | awk {'if ($8 ==  "'"$1"'") print $8" "$11'}
+    
+   ps -aux | awk {'if ($8 ==  "'"$1"'") print $2,$8" "$11'}
 }
 
 # https://stackoverflow.com/questions/953481/find-and-restore-a-deleted-file-in-a-git-repository
