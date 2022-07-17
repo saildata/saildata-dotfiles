@@ -20,7 +20,7 @@ set show-all-if-ambiguous on
 set completion-query-items 200
 
 # Show all results at once
-set page-completions off
+set page-completions on
 
 # Bash v4 enhanced autocomplete - it applies when completing in the middle of a word
 # and helps with avoiding duplication.
@@ -34,3 +34,4 @@ set skip-completed-text on
 # e.g. wraps the previous command in $() and moves to BOL to edit
 # https://brettterpstra.com/2015/07/09/shell-tricks-inputrc-binding-fun/
 "\e\C-m": '\C-a "$(\C-e)"\C-a'
+

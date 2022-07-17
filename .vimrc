@@ -142,3 +142,10 @@ autocmd FileType css setlocal shiftwidth=2 tabstop=2
 " leader+c comment in py and sh files
 autocmd FileType python,sh,conf nnoremap <buffer> <localleader>c I#<esc>
 
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+endif
+

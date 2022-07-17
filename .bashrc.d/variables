@@ -10,7 +10,10 @@ export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME="$HOME"/.local/share
 
 export HISTCONTROL=ignoreboth
-export stmhome="$HOME"/.local/share/Steam/steamapps/common
+export HISTSIZE=
+export HISTFILESIZE=
+
+#export stmhome="$HOME"/.local/share/Steam/steamapps/common
 
 
 #npm
@@ -20,10 +23,10 @@ export npm_config_prefix=~/.node_modules
 export SYSTEMD_EDITOR=vim
 export SYSTEMD_PAGER=less
 export SYSTEMD_LESS=FRXMKi
+
 export EDITOR=vim
 export SUDO_EDITOR=vim
 export VISUAL=vim
-export HISTFILESIZE=1000
 export LESS='-m -i -R -X -P%t?f%f :stdin .?pb%pb\%:?lbLine %lb:?bbByte %bb:-...'
 export LESSHISTFILE='/dev/null'
 export LESSQUIET=1
@@ -33,5 +36,15 @@ export S_COLORS=always
 export BAT_CONFIG_PATH="${XDG_CONFIG_HOME}/bat/bat.conf"
 #export BAT_THEME="Monokai Extended"
 #export BAT_STYLE="full"
+
+# golang
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+
+# nnn
+export NNN_TRASH=1
+export NNN_COLORS="2136"
+export NNN_BMS='d:~/Documents;D:~/Downloads/'
+export LC_COLLATE="C"
 
 # vim: ft=sh

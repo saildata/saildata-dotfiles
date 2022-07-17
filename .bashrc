@@ -8,7 +8,7 @@ esac
 
 # Set default envs
 #-----------------
-export PATH="${HOME}/bin:${HOME}/.local/bin:${HOME}/.node_modules/bin:${HOME}/projects/git-extra-commands/bin:/usr/lib:/var/lib/pacman:${PATH}"
+export PATH="${PATH}:${HOME}/bin:${HOME}/.local/bin:${HOME}/.node_modules/bin:${HOME}/projects/git-extra-commands/bin:/usr/lib:/var/lib/pacman:${HOME}/go/bin"
 
 # Load files from ~/.bashrc.d
 source "$HOME"/.config/bashrc.d/aliases
@@ -33,7 +33,6 @@ export BASH_IT="/home/srw/.bash_it"
 # Leave empty to disable theming.
 # location /.bash_it/themes/
 export BASH_IT_THEME="$HOME/projects/saildata-dotfiles/.bash_it/themes/zork.theme.bash"
-#export BASH_IT_THEME="demula"
 
 # Don't check mail when opening terminal.
 unset MAILCHECK
@@ -61,10 +60,12 @@ export SHORT_TERM_LINE=true
 
 # (Advanced): Uncomment this to make Bash-it reload itself automatically
 # after enabling or disabling aliases, plugins, and completions.
-# export BASH_IT_AUTOMATIC_RELOAD_AFTER_CONFIG_CHANGE=1
+export BASH_IT_AUTOMATIC_RELOAD_AFTER_CONFIG_CHANGE=1
 
 # Load Bash It
 source "$BASH_IT"/bash_it.sh
 
-(cat ~/.cache/wal/sequences &)
+# Wal theme / terminal colors
+#(cat ~/.cache/wal/sequences &)
 
+[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh

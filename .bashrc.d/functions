@@ -52,7 +52,7 @@ function digga() {
 # small enough for one screen.
 #---------------------------------------------------------------------------------
 function tre() {
-    tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" --timefmt "%m-%d %H:%M" | less -FRNX;
+    tree -a -C -p -I '.git|node_modules|bower_components' --dirsfirst "$@" --timefmt "%m-%d-%Y %H:%M" | less -FRNX;
 }
 
 
@@ -128,6 +128,20 @@ ps-filter-stat() {
 # https://stackoverflow.com/questions/953481/find-and-restore-a-deleted-file-in-a-git-repository
 git-show-deleted() {
   git log --diff-filter=D --summary
+}
+
+neofetch-with-clear() {
+  clear && neofetch
+}
+
+alias neofetch=neofetch-with-clear
+
+get-pacman-orphans() {
+  sudo pacman -Qdt
+}
+
+function yta() {
+  mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*"
 }
 
 # vim: ft=sh

@@ -2,21 +2,37 @@
 # bash aliases
 #
 
+# make shellcheck happy and move from variables file
+export stmhome="$HOME"/.local/share/Steam/steamapps/common
+
+
 #TODO these need to be sorted better and cleaned up
 
 alias djd='du -sh'
 alias gi='grep -i --color=auto'
 alias je='journalctl --this-boot --no-hostname -e'
-alias dmesg='sudo dmesg -T'
+alias dmesg='sudo dmesg -T --color=always'
 alias ffplay='ffplay -hide_banner'
 alias ffmpeg='ffmpeg -hide_banner'
 alias ffprobe='ffprobe -hide_banner'
 alias getiostat='iostat -dmxc'
 alias ncdu='ncdu --si'
-alias ee=' history -c && history -w && rm -f ~/.viminfo && rm -f ~/.python_history && exit'
+alias ee=' history -c && history -w && rm -f ~/.python_history && exit'
 alias ltt='ls -latr --color=auto /tmp'
 alias wcl='wc -l'
 alias gosth='cd $stmhome'
+alias utc='TZ=Etc/UTC date'
+alias sloc='ohcount'
+
+
+# cant seem to remember that it's s-tui..
+alias stui='s-tui'
+# or that this has a dash in it
+alias scim='sc-im'
+
+# or that this is a nice yt viewer
+alias youtube-pipe-viewer='pipe-viewer'
+
 # ddgr(show 7 results, no user-agent, use US english, expand URLs)
 alias ddgr="ddgr -n 7 --noua --reg 'en-us' -x"
 alias mpv-a='mpv --list-options | less'
@@ -26,7 +42,7 @@ alias pgrep='pgrep -if'
 alias getdirtystats='grep -E "dirty|writeback" /proc/vmstat'
 
 alias clipc='xclip -r -selection clipboard'
-alias clipv='xclip -selection clipboard -o'
+alias clipv-png='xclip -selection clipboard -o -t image/png'
 
 alias get-disk-hogs="du -S | sort -n -r | head -n 10"
 
@@ -38,8 +54,7 @@ jel() { journalctl -b -p "$1"; }
 # Arch Linux / Pacman / yay
 #--------------------------
 # remote package detail
-alias psi='pacman -Si'
-alias ysi='yay -Si'
+alias psi='yay -Si'
 # local package detail
 alias pqi='pacman -Qi'
 # list files
@@ -52,6 +67,14 @@ alias plog='pacolog -l3'
 pqq() { pacman -Qq | grep -i --col "$1"; }
 # show requires info for installed package
 alias pqqi='pacman -Qii'
+# reverse depends
+alias whoneeds='pactree -r'
+# show which package has the requested file
+alias whohas='yay -F'
+# get URL from package detail
+pqu() { pacman -Qi "$1" | grep 'URL' | awk '{print $3}'; }
+# yay search
+pss() { yay -Ss "$1"; }
 
 
 # MISC/OTHER
@@ -70,7 +93,7 @@ alias ..='cd ..'
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
-alias bashit-enabled='l ~/.bash_it/enabled'
+#alias bashit-enabled='l ~/.bash_it/enabled'
 
 # LS & Friends
 #--------------
@@ -93,11 +116,11 @@ alias dir='dir --color'
 # YT related
 youtube-dl-audio () {
     #https://www.youtube.com/watch?v=l41BJaS_U3I&list=RDWV2fuDZCWM8&index=16
-    youtube-dl -i -f bestaudio -x --audio-quality 0 -o '~/Music/youtube/%(title)s.%(ext)s' "$1"
+    youtube-dl -i -f bestaudio -x --audio-quality 0 -o "$HOME/Music/youtube/%(title)s.%(ext)s" "$1"
 }
 
 youtube-dl-audio-pl () {
-   youtube-dl -i -f bestaudio -x --audio-quality 0 -o '~/Music/youtube/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' "$1"
+   youtube-dl -i -f bestaudio -x --audio-quality 0 -o "$HOME/Music/youtube/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s" "$1"
 }
 
 

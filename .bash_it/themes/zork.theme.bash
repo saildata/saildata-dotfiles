@@ -7,7 +7,34 @@ SCM_GIT_CHAR="${bold_green}±${normal}"
 SCM_SVN_CHAR="${bold_cyan}⑆${normal}"
 SCM_HG_CHAR="${bold_red}☿${normal}"
 
+#Mysql Prompt
+export MYSQL_PS1="(\u@\h) [\d]> "
+
+case $TERM in
+        xterm*)
+        TITLEBAR="\[\033]0;\w\007\]"
+        ;;
+        *)
+        TITLEBAR=""
+        ;;
+esac
+
 PS3=">> "
+
+__my_rvm_ruby_version() {
+    local gemset=$(echo $GEM_HOME | awk -F'@' '{print $2}')
+  [ "$gemset" != "" ] && gemset="@$gemset"
+    local version=$(echo $MY_RUBY_HOME | awk -F'-' '{print $2}')
+    local full="$version$gemset"
+  [ "$full" != "" ] && echo "[$full]"
+}
+
+is_vim_shell() {
+        if [ ! -z "$VIMRUNTIME" ]
+        then
+                echo "[${cyan}vim shell${normal}]"
+        fi
+}
 
 modern_scm_prompt() {
         CHAR=$(scm_char)
@@ -19,6 +46,15 @@ modern_scm_prompt() {
         fi
 }
 
+# show chroot if exist
+chroot(){
+    if [ -n "$debian_chroot" ]
+    then 
+        my_ps_chroot="${bold_cyan}$debian_chroot${normal}";
+        echo "($my_ps_chroot)";
+    fi
+    }
+
 # show virtualenvwrapper
 my_ve(){
 
@@ -28,7 +64,7 @@ my_ve(){
         echo "($my_ps_ve)";
     elif [ -n "$VIRTUAL_ENV" ]
     then 
-        my_ps_ve="${bold_purple}🐍$ve${normal}";
+        my_ps_ve="${bold_purple}$ve${normal}";
         echo "($my_ps_ve)";
     fi
     echo "";
@@ -40,21 +76,21 @@ prompt() {
     # yes, these are the the same for now ...
     my_ps_host_root="${green}\h${normal}";
  
-    my_ps_user="${green}\u${normal}"
-    my_ps_root="${red}\u${normal}";
+    my_ps_user="${bold_green}\u${normal}"
+    my_ps_root="${bold_red}\u${normal}";
 
     if [ -n "$VIRTUAL_ENV" ]
     then
-        ve=`basename $VIRTUAL_ENV`;
+        ve=`basename "$VIRTUAL_ENV"`;
     fi
 
     # nice prompt
     case "`id -u`" in
         0) PS1="${TITLEBAR}┌─$(my_ve)$(chroot)[$my_ps_root][$my_ps_host_root]$(modern_scm_prompt)$(__my_rvm_ruby_version)[${cyan}\w${normal}]$(is_vim_shell)
-└─▪ "
+└─∘ "
         ;;
-    *) PS1="${blue}┌∘${normal}$(my_ve)[$my_ps_user][$my_ps_host]$(modern_scm_prompt)[$(echo_color blue italic)\w${normal}]${blue}
-└─∘ ${normal}"
+        *) PS1="${TITLEBAR}┌─$(my_ve)$(chroot)[$my_ps_user][$my_ps_host]$(modern_scm_prompt)$(__my_rvm_ruby_version)[${cyan}\w${normal}]$(is_vim_shell)
+└─∘ "
         ;;
     esac
 }
