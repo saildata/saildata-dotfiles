@@ -10,7 +10,7 @@ export stmhome="$HOME"/.local/share/Steam/steamapps/common
 
 alias djd='du -sh'
 alias gi='grep -i --color=auto'
-alias je='journalctl --this-boot --no-hostname -e'
+alias je='journalctl --no-hostname -e'
 alias dmesg='sudo dmesg -T --color=always'
 alias ffplay='ffplay -hide_banner'
 alias ffmpeg='ffmpeg -hide_banner'
@@ -23,18 +23,20 @@ alias wcl='wc -l'
 alias gosth='cd $stmhome'
 alias utc='TZ=Etc/UTC date'
 alias sloc='ohcount'
+alias fd='fd -HI'
+alias neofetch='fastfetch'
+alias diff='diff --color=auto'
 
+# https://stackoverflow.com/questions/51904300/list-all-pipenv-environments
+alias pipenv-list='for venv in ~/.local/share/virtualenvs/* ; do basename $venv; cat $venv/.project | sed "s/\(.*\)/\t\1\n/" ; done'
 
 # cant seem to remember that it's s-tui..
 alias stui='s-tui'
 # or that this has a dash in it
 alias scim='sc-im'
 
-# or that this is a nice yt viewer
-alias youtube-pipe-viewer='pipe-viewer'
-
 # ddgr(show 7 results, no user-agent, use US english, expand URLs)
-alias ddgr="ddgr -n 7 --noua --reg 'en-us' -x"
+alias ddgr="ddgr -n 7 --reg 'en-us' -x"
 alias mpv-a='mpv --list-options | less'
 alias pa='pulsemixer'
 alias glances='glances -C $XDG_CONFIG_HOME/glances/glances.conf'
@@ -50,6 +52,7 @@ alias ip="ip --color=auto"
 
 # changed to a function...
 jel() { journalctl -b -p "$1"; }
+jgrep() { journalctl -b | grep -i --col "$1"; }
 
 # Arch Linux / Pacman / yay
 #--------------------------
@@ -68,7 +71,7 @@ pqq() { pacman -Qq | grep -i --col "$1"; }
 # show requires info for installed package
 alias pqqi='pacman -Qii'
 # reverse depends
-alias whoneeds='pactree -r'
+alias whoneeds='pactree -r -c -o --depth=1'
 # show which package has the requested file
 alias whohas='yay -F'
 # get URL from package detail
